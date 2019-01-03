@@ -1,8 +1,23 @@
 #include<stdio.h>
+#include<stdlib.h>
 
-void insertElement()
+typedef struct node
+{
+    int data;
+    struct node* nextNode;
+} node;
+
+void insertElement(node** head)
 {
     //TODO: implement this function
+    node* dummy;
+    int value;
+    printf("\nEnter value: ");
+    scanf("%d", &value);
+    dummy = (node*) malloc(sizeof(node));
+    dummy -> data = value;
+    dummy -> nextNode = *head;
+    *head = dummy;
 }
 
 void searchElement()
@@ -19,6 +34,7 @@ void deleteElement()
 int main()
 {
     int choice;
+    node* head = NULL;
     while(1)
     {
         puts("Enter");
@@ -30,7 +46,7 @@ int main()
         switch (choice)
         {
         case 1:
-            insertElement();
+            insertElement(&head);
             break;
         case 2:
             searchElement();
@@ -43,6 +59,7 @@ int main()
         default:
             puts("INVALID INPUT");
         }
+        printf("%d\n", head->data);
     }
     return 0;
 }
